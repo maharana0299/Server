@@ -11,7 +11,6 @@ const server = http.createServer((req, res) => {
 var port = process.env.PORT || 3000;
 server.listen(port, () => {
 
-
     console.log("Listening on port " + port + "...")
 })
 
@@ -25,6 +24,7 @@ wsServer.on('request', (req) => {
     connections.push(connection)
 
     connection.on('message', (mes) => {
+        console.log(mes.toString())
         connections.forEach(element => {
             if (element != connection)
                 element.sendUTF(mes.utf8Data)
